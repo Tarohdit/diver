@@ -15,6 +15,8 @@ def set_default_commands(bot: TeleBot):
             types.BotCommand('start', 'Начать игру'),
             types.BotCommand('stop', 'Остановить бота'),
             types.BotCommand('spam', 'Проверить АнтиСпам'),
+            types.BotCommand('test', 'Запустить тест состояний (state)'),
+            types.BotCommand('cancel', 'Сбросить состояние'),
         ]
     )
     print('Команды бота обновлены')
