@@ -13,7 +13,7 @@ from tgbot.middlewares.antiflood_middleware import antispam_func
 from tgbot.states.register_state import Register
 
 # utils
-from tgbot.utils.database import Database
+# from tgbot.utils.database import Database
 
 # telebot
 from telebot import TeleBot
@@ -21,7 +21,7 @@ from telebot import TeleBot
 # config
 from tgbot import config
 
-db = Database()
+# db = Database()
 
 # remove this if you won't use middlewares:
 from telebot import apihelper

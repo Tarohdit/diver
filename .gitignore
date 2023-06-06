@@ -1,3 +1,6 @@
 .DS_STORE
 /tgbot/config.py
+
+# pyCharm
 .idea/
+__pycache__/
