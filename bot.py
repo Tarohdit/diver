@@ -18,6 +18,9 @@ from tgbot.handlers.Test.test2 import test2
 from tgbot.handlers.Test.test3 import test3
 from tgbot.handlers.Test.test4 import test4
 # ===
+from tgbot.handlers.registration import registration
+from tgbot.handlers.callback_query.cbq_reg import cbq_reg
+from tgbot.handlers.callback_query.cbq_reg_cancel import cbq_reg_cancel
 
 # middlewares
 from tgbot.middlewares.antiflood_middleware import antispam_func
@@ -68,6 +71,9 @@ def register_handlers():
     bot.register_message_handler(test3, state=Test.Q3, is_digit=True, pass_bot=True)
     bot.register_message_handler(test4, state=Test.Q3, is_digit=False, pass_bot=True)
     # ===
+    bot.register_message_handler(registration, commands=['reg'], pass_bot=True)
+    bot.register_callback_query_handler(cbq_reg, func=lambda call: call.data=='reg', pass_bot=True)
+    bot.register_callback_query_handler(cbq_reg_cancel, func=lambda call: call.data=='reg_cancel', pass_bot=True)
 
 register_handlers()
 
