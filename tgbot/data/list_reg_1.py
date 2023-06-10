@@ -5,7 +5,11 @@ class AllChats:
     list_all_chats = []
 
     @staticmethod
-    def add_chat(chat_id):  # добавить чат в список чатов
+    def add_chat(chat_id):
+        """
+        RU Добавить чат в список чатов
+        EN Add chat to chat list
+        """
         __exists = False
         for i in range(len(AllChats.list_all_chats)):  # завернуть в функцию def check_list
             __object = AllChats.list_all_chats[i]  # достать i элемент (объект класса Chat) из списка
@@ -13,6 +17,7 @@ class AllChats:
             if chat_id == __chat_id:
                 __exists = True  # чат с таким ид уже есть в списке
                 print('class AllChats: такой чат уже есть')
+                __object.reset_list_users()
 
         if __exists == False:  # если объекта с таким chat_id нет в списке
             print('class AllChats: добавить новый чат в список')
@@ -99,6 +104,11 @@ class Chat:
             __user_link = __object.user_link  # класс User, свойство user_link
             __list_link.append(__user_link)
         return __list_link
+
+
+    def reset_list_users(self):
+        self.list_users = []
+        print('class Chat: reset_list_users')
 
 
 class User:
