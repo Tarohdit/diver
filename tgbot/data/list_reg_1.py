@@ -24,7 +24,7 @@ class AllChats:
     @staticmethod
     def info():
         print(
-            f'class AllChats: list_all_chats: {AllChats.list_all_chats}\n'  # показать какие чаты в списке
+            f'class AllChats: list_all_chats: elements: {len(AllChats.list_all_chats)}, {AllChats.list_all_chats}\n'  # показать какие чаты в списке
         )
 
 
@@ -53,7 +53,7 @@ class Chat:
     def info(self):
         print(
             f'class Chat: chat_id: {self.chat_id}\n'
-            f'class Chat: list_users: {self.list_users}\n'   # показать что в списке
+            f'class Chat: list_users: elements: {len(self.list_users)}, {self.list_users}\n'   # показать что в списке
         )
 
 
@@ -61,21 +61,34 @@ class Chat:
         return self.chat_id
 
 
-    def add_user(self, CallbackQuery):  # добавить игрока в рег список
+    def check_list(self, CallbackQuery):
+        """
+        RU Проверить содержит ли список объект, возвращается True или False
+        EN Check if the list contains an object, returns True or False
+        """
         user_id = CallbackQuery.from_user.id  # номер пользователя который нажал на кнопку регистрации
         __exists = False
-        # завернуть в функцию def check_list
         for i in range(len(self.list_users)):  # пробежаться по списку игроков
             __object = self.list_users[i]  # достать i элемент (объект класса User) из списка
             __user_id = __object.get_user_id()  # вызвать метод класса User, который вернет user_id
             if user_id == __user_id:
                 __exists = True  # игрок с таким ид уже есть в списке
-                print('class Chat: игрок уже зарегистрирован')
+                print('class Chat: игрок есть в рег списке')
 
         if __exists == False:  # если объекта с таким user_id нет в списке
-            print('class Chat: добавить нового игрока в рег список')
-            user = User(CallbackQuery)  # создать объект класса User
-            self.list_users.append(user)  # добавить его в конец списка
+            print('class Chat: игрока нет в рег списке')
+
+        return __exists
+
+
+    def add_user(self, CallbackQuery):
+        """
+        RU Добавить игрока в рег список
+        EN Add player to reg list
+        """
+        print('class Chat: добавить игрока в рег список')
+        user = User(CallbackQuery)  # создать объект класса User
+        self.list_users.append(user)  # добавить его в конец списка
         self.info()
 
 
