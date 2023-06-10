@@ -1,3 +1,5 @@
+# data
+
 # filters
 from tgbot.filters.admin_filter import AdminFilter
 # Test
@@ -56,7 +58,7 @@ apihelper.ENABLE_MIDDLEWARE = True
 bot = TeleBot(config.TOKEN, num_threads=5, state_storage=state_storage)
 
 set_default_commands(bot)
-welcome_message(bot)
+# welcome_message(bot)
 
 def register_handlers():
     bot.register_message_handler(admin_user, commands=['start'], admin=True, pass_bot=True)

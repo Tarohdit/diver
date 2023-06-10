@@ -23,3 +23,4 @@ def set_default_commands(bot: TeleBot):
     cmd = bot.get_my_commands()
     for i in range(len(cmd)):
         print(f'{cmd[i].command} - {cmd[i].description}')
+    print()
