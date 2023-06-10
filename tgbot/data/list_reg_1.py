@@ -9,7 +9,7 @@ class AllChats:
         __exists = False
         for i in range(len(AllChats.list_all_chats)):  # завернуть в функцию def check_list
             __object = AllChats.list_all_chats[i]  # достать i элемент (объект класса Chat) из списка
-            __chat_id = __object.get_chat_id()  # вызвать метод класса Chat, который вернет chat_id
+            __chat_id = __object.chat_id  # класс Chat, свойство chat_id
             if chat_id == __chat_id:
                 __exists = True  # чат с таким ид уже есть в списке
                 print('class AllChats: такой чат уже есть')
@@ -33,7 +33,7 @@ class AllChats:
         chat_id = CallbackQuery.message.chat.id
         for i in range(len(AllChats.list_all_chats)):  # завернуть в функцию def check_list
             __object = AllChats.list_all_chats[i]  # достать i элемент (объект класса Chat) из списка
-            __chat_id = __object.get_chat_id()  # вызвать метод класса Chat, который вернет chat_id
+            __chat_id = __object.chat_id  # класс Chat, свойство chat_id
             if chat_id == __chat_id:
                 print('class AllChats: return object class Chat')
                 return __object
@@ -57,10 +57,6 @@ class Chat:
         )
 
 
-    def get_chat_id(self):
-        return self.chat_id
-
-
     def check_list(self, CallbackQuery):
         """
         RU Проверить содержит ли список объект, возвращается True или False
@@ -70,7 +66,7 @@ class Chat:
         __exists = False
         for i in range(len(self.list_users)):  # пробежаться по списку игроков
             __object = self.list_users[i]  # достать i элемент (объект класса User) из списка
-            __user_id = __object.get_user_id()  # вызвать метод класса User, который вернет user_id
+            __user_id = __object.user_id  # класс User, свойство user_id
             if user_id == __user_id:
                 __exists = True  # игрок с таким ид уже есть в списке
                 print('class Chat: игрок есть в рег списке')
@@ -92,13 +88,25 @@ class Chat:
         self.info()
 
 
+    def list_user_link(self):
+        """
+        RU  возвращает список user_link зарегистрированных игроков
+        EN returns user link list of registered players
+        """
+        __list_link = []  # временно хранит user_link
+        for i in range(len(self.list_users)):  # пробежаться по списку игроков
+            __object = self.list_users[i]  # достать i элемент (объект класса User) из списка
+            __user_link = __object.user_link  # класс User, свойство user_link
+            __list_link.append(__user_link)
+        return __list_link
+
+
 class User:
     user_id = None
     user_name = None
-    user_link = None
+    user_link = None  # ссылка на аккаунт пользователя, синий ник в чате
 
     def __init__(self, CallbackQuery):
-        print(CallbackQuery)
         self.user_id = CallbackQuery.from_user.id  # номер пользователя который нажал на кнопку регистрации
         self.user_name = CallbackQuery.from_user.first_name  # имя пользователей который нажал на кнопку регистрации
         self.user_link = util.user_link(CallbackQuery.from_user)  # ссылка на аккаунт пользователя (синий ник в чате)
@@ -110,7 +118,3 @@ class User:
             f'class User: user_name: {self.user_name}\n'
             f'class User: user_link: {self.user_link}\n'
         )
-
-
-    def get_user_id(self):
-        return self.user_id
