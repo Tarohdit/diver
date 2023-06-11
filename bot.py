@@ -91,6 +91,7 @@ bot.add_custom_filter(StateFilter(bot))
 # ===
 
 def run():
+    bot.skip_pending = True  # чтобы бот не реагировал на сообщения когда он был отключен
     bot.infinity_polling()
 
 
