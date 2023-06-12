@@ -5,7 +5,8 @@ from tgbot.utils.edit_message_reg import edit_message_reg
 
 
 def cbq_reg_cancel(call: CallbackQuery, bot: TeleBot):
-    obj_chat = AllChats.get_obj_chat(call)
+    chat_id = call.message.chat.id
+    obj_chat = AllChats.get_obj_chat(chat_id)
     exists = obj_chat.check_list(call)
     if exists == True:
         obj_chat.delete_user(call)

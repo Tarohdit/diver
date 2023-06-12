@@ -83,6 +83,10 @@ class Chat:
         print('class Chat: clear_list_users')
 
 
-    def get_list_length(self):  # возвращает длину списка
-        list_len = len(self.__list_users)
-        return list_len
+    def get_amount_players(self):  # получить число игроков, возвращает кол-во игроков в реге
+        amount_players = len(self.__list_users)
+        return amount_players
+
+    def test(self, chat_id):
+        amount_players = len(self.__list_users)
+        return amount_players

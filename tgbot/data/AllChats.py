@@ -17,7 +17,6 @@ class AllChats:
             if chat_id == __chat_id:
                 print('class AllChats: такой чат уже есть')
                 __exists = True  # чат с таким ид уже есть в списке
-                __object.clear_list_users()  # при повторном вызове команды reg очистить список игроков
 
         if __exists == False:  # если объекта с таким chat_id нет в списке
             print('class AllChats: добавить новый чат в список')
@@ -34,8 +33,7 @@ class AllChats:
 
 
     @staticmethod
-    def get_obj_chat(CallbackQuery):
-        chat_id = CallbackQuery.message.chat.id
+    def get_obj_chat(chat_id):
         for i in range(len(AllChats.list_all_chats)):  # завернуть в функцию def check_list
             __object = AllChats.list_all_chats[i]  # достать i элемент (объект класса Chat) из списка
             __chat_id = __object.chat_id  # класс Chat, свойство chat_id

@@ -23,6 +23,7 @@ from tgbot.handlers.Test.test4 import test4
 from tgbot.handlers.registration import registration
 from tgbot.handlers.callback_query.cbq_reg import cbq_reg
 from tgbot.handlers.callback_query.cbq_reg_cancel import cbq_reg_cancel
+from tgbot.handlers.start import cmd_start
 
 # middlewares
 from tgbot.middlewares.antiflood_middleware import antispam_func
@@ -62,6 +63,7 @@ set_default_commands(bot)
 
 def register_handlers():
     bot.register_message_handler(admin_user, commands=['start'], admin=True, pass_bot=True)
+    bot.register_message_handler(cmd_start, commands=['start'], admin=False, pass_bot=True)
     bot.register_message_handler(any_user, commands=['start'], admin=False, pass_bot=True)
     bot.register_message_handler(anti_spam, commands=['spam'], pass_bot=True)
     bot.register_message_handler(cmd_stop, commands=['stop'], pass_bot=True)
