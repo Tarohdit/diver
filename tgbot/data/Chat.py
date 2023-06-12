@@ -1,47 +1,4 @@
-from telebot import util    # для тега, ника пользователя в сообщение как ссылки на его аккаунт
-
-
-class AllChats:
-    list_all_chats = []
-
-    @staticmethod
-    def add_chat(chat_id):
-        """
-        RU Добавить чат в список чатов
-        EN Add chat to chat list
-        """
-        __exists = False
-        for i in range(len(AllChats.list_all_chats)):  # завернуть в функцию def check_list
-            __object = AllChats.list_all_chats[i]  # достать i элемент (объект класса Chat) из списка
-            __chat_id = __object.chat_id  # класс Chat, свойство chat_id
-            if chat_id == __chat_id:
-                print('class AllChats: такой чат уже есть')
-                __exists = True  # чат с таким ид уже есть в списке
-                __object.clear_list_users()  # при повторном вызове команды reg очистить список игроков
-
-        if __exists == False:  # если объекта с таким chat_id нет в списке
-            print('class AllChats: добавить новый чат в список')
-            chat = Chat(chat_id)  # создать объект класса Chat
-            AllChats.list_all_chats.append(chat)  # добавить его в конец списка
-        AllChats.info()
-
-
-    @staticmethod
-    def info():
-        print(
-            f'class AllChats: list_all_chats: elements: {len(AllChats.list_all_chats)}, {AllChats.list_all_chats}\n'  # показать какие чаты в списке
-        )
-
-
-    @staticmethod
-    def get_obj_chat(CallbackQuery):
-        chat_id = CallbackQuery.message.chat.id
-        for i in range(len(AllChats.list_all_chats)):  # завернуть в функцию def check_list
-            __object = AllChats.list_all_chats[i]  # достать i элемент (объект класса Chat) из списка
-            __chat_id = __object.chat_id  # класс Chat, свойство chat_id
-            if chat_id == __chat_id:
-                print('class AllChats: return object class Chat')
-                return __object
+from tgbot.data.User import User
 
 
 class Chat:
@@ -129,22 +86,3 @@ class Chat:
     def get_list_length(self):  # возвращает длину списка
         list_len = len(self.__list_users)
         return list_len
-
-
-class User:
-    user_id = None
-    user_name = None
-    user_link = None  # ссылка на аккаунт пользователя, синий ник в чате
-
-    def __init__(self, CallbackQuery):
-        self.user_id = CallbackQuery.from_user.id  # номер пользователя который нажал на кнопку регистрации
-        self.user_name = CallbackQuery.from_user.first_name  # имя пользователей который нажал на кнопку регистрации
-        self.user_link = util.user_link(CallbackQuery.from_user)  # ссылка на аккаунт пользователя (синий ник в чате)
-
-
-    def info(self):
-        print(
-            f'class User: user_id: {self.user_id}\n'
-            f'class User: user_name: {self.user_name}\n'
-            f'class User: user_link: {self.user_link}\n'
-        )

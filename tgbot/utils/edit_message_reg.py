@@ -1,6 +1,6 @@
 from telebot import TeleBot
 from telebot.types import CallbackQuery
-from tgbot.data.list_reg_1 import AllChats
+from tgbot.data.AllChats import AllChats
 from tgbot.keyboards.keyb_reg import keyb_reg
 
 

@@ -1,7 +1,8 @@
 from telebot import TeleBot
 from telebot.types import Message
+from tgbot.data.AllChats import AllChats
 from tgbot.keyboards.keyb_reg import keyb_reg
-from tgbot.data.list_reg_1 import AllChats
+
 
 def registration(message: Message, bot: TeleBot):
     AllChats.add_chat(message.chat.id)
