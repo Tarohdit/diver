@@ -10,7 +10,6 @@ class Game:
         )
 
 
-
     @staticmethod
     def start():
         print('Game: start game')

@@ -24,6 +24,7 @@ from tgbot.handlers.registration import registration
 from tgbot.handlers.callback_query.cbq_reg import cbq_reg
 from tgbot.handlers.callback_query.cbq_reg_cancel import cbq_reg_cancel
 from tgbot.handlers.start import cmd_start
+from tgbot.handlers.help import cmd_help
 
 # middlewares
 from tgbot.middlewares.antiflood_middleware import antispam_func
@@ -78,6 +79,7 @@ def register_handlers():
     bot.register_message_handler(registration, commands=['reg'], pass_bot=True)
     bot.register_callback_query_handler(cbq_reg, func=lambda call: call.data=='reg', pass_bot=True)
     bot.register_callback_query_handler(cbq_reg_cancel, func=lambda call: call.data=='reg_cancel', pass_bot=True)
+    bot.register_message_handler(cmd_help, commands=['help'], pass_bot=True)
 
 register_handlers()
 

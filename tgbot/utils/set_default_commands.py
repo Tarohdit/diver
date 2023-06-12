@@ -17,6 +17,7 @@ def set_default_commands(bot: TeleBot):
             types.BotCommand('spam', 'Проверить АнтиСпам'),
             types.BotCommand('test', 'Запустить тест состояний (state)'),
             types.BotCommand('cancel', 'Сбросить состояние'),
+            types.BotCommand('help', 'Помощь'),
         ]
     )
     print('Команды бота обновлены')
